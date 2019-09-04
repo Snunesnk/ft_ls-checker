@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:04:41 by snunes            #+#    #+#              #
-#    Updated: 2019/09/03 18:04:32 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:09:46 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,8 +29,8 @@ then
 	exit 1;
 fi
 
-echo "=========================== reverse Basic tests ===========================\n";
 mkdir -p result;
+echo "=========================== reverse Basic tests ===========================\n";
 ./$1 -1r > result/r1 2>&1;
 ls -1r > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
@@ -52,9 +52,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1r]"$pos$pos$tick$clear;
 fi
-rm -rf result;
 
-mkdir -p result;
 ./$1 -1r ../ > result/r1 2>&1;
 ls -1r ../ > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
@@ -76,9 +74,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1r ../]"$pos$tick$clear;
 fi
-rm -rf result;
 
-mkdir -p result;
 mkdir -p dir1 dir2 dir3;
 ./$1 -1r dir1 dir2 dir3 > result/r1 2>&1;
 ls -1r dir1 dir2 dir3 > result/r2 2>&1;
@@ -101,10 +97,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1r dir1 dir2 dir3]"$pos$tick$clear;
 fi
-rm -rf result;
 rm -rf dir1 dir2 dir3;
 
-mkdir -p result;
 mkdir -p dir1 dir2 dir3;
 touch  dir1/file1 dir2/file2 dir3/file3;
 ./$1 -1r dir1 dir2 dir3 > result/r1 2>&1;
@@ -129,7 +123,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1r dir1 dir2 dir3]"$pos$tick$clear;
 fi
-rm -rf result;
 rm -rf dir1 dir2 dir3;
 
 printf $Byellow"\nEnd of reverse basic tests\n"$clear;
@@ -141,3 +134,4 @@ else
 	((success=4-success));
 	printf "%d test failed\n"$clear "$success";
 fi
+rm -rf result;

@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:04:41 by snunes            #+#    #+#              #
-#    Updated: 2019/09/03 19:13:30 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:06:53 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,8 +29,8 @@ then
 	exit 1;
 fi
 
-echo "=========================== mix tests ===========================\n";
 mkdir -p result;
+echo "=========================== mix tests ===========================\n";
 ./$1 -lR /usr/bin 2>&1 | grep -v "ls:" | grep -v "treereg" > result/r1 2>&1;
 ls -lR /usr/bin 2>&1 | grep -v "ls:" | grep -v "treereg" > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
@@ -52,9 +52,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -lR /usr/bin]"$pos$pos$tick$clear;
 fi
-rm -rf result;
 
-mkdir -p result;
 ./$1 -lt /usr > result/r1 2>&1;
 ls -lt /usr > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
@@ -76,9 +74,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -lt /usr]"$pos$pos$tick$clear;
 fi
-rm -rf result;
 
-mkdir -p result;
 mkdir tests;
 touch tests/files{0..1000};
 ./$1 -l tests > result/r1 2>&1;
@@ -102,10 +98,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l] with many files"$pos$pos$tick$clear;
 fi
-rm -rf result;
 rm -rf tests;
 
-mkdir -p result;
 ./$1 -l /var/ | grep -v "@" > result/r1 2>&1;
 ls -l /var/ | grep -v "@" > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
@@ -127,7 +121,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l /var/run/]"$pos$pos$tick$clear;
 fi
-rm -rf result;
 rm -rf tests/file*;
 rm -rf tests;
 
@@ -140,3 +133,4 @@ else
 	((success=4-success));
 	printf "%d test failed\n"$clear "$success";
 fi
+rm -rf result;

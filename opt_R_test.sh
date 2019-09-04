@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:03:31 by snunes            #+#    #+#              #
-#    Updated: 2019/09/02 17:16:36 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:07:29 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,8 +29,8 @@ then
 	exit 1;
 fi
 
-echo "=========================== option R tests ===========================\n";
 mkdir -p .result;
+echo "=========================== option R tests ===========================\n";
 mkdir -p level1/level{2..4}/level{5..9}
 ./$1 -1R level1 > .result/r1 2>&1;
 ls -1R level1 > .result/r2 2>&1;
@@ -53,10 +53,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1R] simple"$pos$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf level1;
 
-mkdir -p .result;
 mkdir -p tests;
 mkdir -p tests/a tests/b tests/c;
 mkdir -p tests/.a tests/.b tests/.c;
@@ -81,10 +79,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1R] with hidden files"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf tests;
 
-mkdir -p .result;
 mkdir -p dir1 dir2 dir3;
 chmod 000 dir1;
 ./$1 -1R 2>&1 | grep -v denied> .result/r1 2>&1;
@@ -108,11 +104,9 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": file without permission"$pos$tick$clear;
 fi
-rm -rf .result;
 chmod 777 dir1;
 rm -rf dir1 dir2 dir3;
 
-mkdir -p .result;
 mkdir A;
 touch  A/file rootFile;
 ./$1 -1R A a rootfile Rootfile > .result/r1 2>&1;
@@ -137,10 +131,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": Case insensitive test"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf A rootFile;
 
-mkdir -p .result;
 mkdir -p dir;
 mkdir -p open/closed;
 chmod 000 dir;
@@ -167,13 +159,11 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": Count of error message"$pos$tick$clear;
 fi
-rm -rf .result;
 chmod 777 dir;
 chmod 777 open/closed;
 rm -rf dir;
 rm -rf open;
 
-mkdir -p .result;
 mkdir -p dir/dir2;
 touch dir/file1 dir/file2 dir/file3 dir/file4;
 ln -s dir symdir;
@@ -199,7 +189,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": Directories symlink"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf dir;
 rm -rf symdir;
 
@@ -229,7 +218,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1R ~/]"$pos$tick$clear;
 fi
-rm -rf .result;
 
 printf $Byellow"\nEnd of option R tests\n"$clear;
 if [ $success -eq $nb_test ]
@@ -240,3 +228,4 @@ else
 	((success= $nb_test - $success));
 	printf "%d test failed\n"$clear "$success";
 fi
+rm -rf .result;

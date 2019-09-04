@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:03:31 by snunes            #+#    #+#              #
-#    Updated: 2019/09/02 14:09:47 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:07:50 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,8 +29,8 @@ then
 	exit 1;
 fi
 
-echo "=========================== option a tests ===========================\n";
 mkdir -p .result;
+echo "=========================== option a tests ===========================\n";
 mkdir tests;
 mkdir -p tests/.hidden;
 touch tests/.hide tests/not_hide;
@@ -55,10 +55,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1a] simple"$pos$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf tests;
 
-mkdir -p .result;
 mkdir tests;
 mkdir -p tests/.hidden{1..10} tests/not_hidden{1..10};
 touch tests/.hide{1..10} tests/not_hide{1..10};
@@ -83,7 +81,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1aR] multiple dir"$pos$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf tests;
 
 printf $Byellow"\nEnd of option a tests\n"$clear;
@@ -95,3 +92,4 @@ else
 	((success= $nb_test - $success));
 	printf "%d test failed\n"$clear "$success";
 fi
+rm -rf .result;

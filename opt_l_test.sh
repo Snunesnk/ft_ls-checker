@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:03:31 by snunes            #+#    #+#              #
-#    Updated: 2019/09/03 19:08:24 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:08:30 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,8 +29,8 @@ then
 	exit 1;
 fi
 
-echo "=========================== option l tests ===========================\n";
 mkdir -p .result;
+echo "=========================== option l tests ===========================\n";
 ./$1 -1l > .result/r1 2>&1;
 ls -1l > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
@@ -52,9 +52,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -1l]"$pos$pos$tick$clear;
 fi
-rm -rf .result;
 
-mkdir -p .result;
 ./$1 -l ../ > .result/r1 2>&1;
 ls -l ../ > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
@@ -76,9 +74,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l ../]"$pos$tick$clear;
 fi
-rm -rf .result;
 
-mkdir -p .result;
 mkdir -p dir1 dir2 dir3;
 ./$1 -l dir1 dir2 dir3 > .result/r1 2>&1;
 ls -l dir1 dir2 dir3 > .result/r2 2>&1;
@@ -101,10 +97,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l dir1 dir2 dir3]"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf dir1 dir2 dir3;
 
-mkdir -p .result;
 mkdir -p dir1 dir2 dir3;
 touch  dir1/file1 dir2/file2 dir3/file3;
 echo "Bonjour monde" > dir1/file1
@@ -132,10 +126,8 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l dir1 dir2 dir3]"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf dir1 dir2 dir3;
 
-mkdir -p .result;
 mkdir -p tests/a tests/b tests/c;
 chmod 644 tests/a;
 chmod 755 tests/b;
@@ -162,11 +154,9 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": Permissions display test"$pos$tick$clear;
 fi
-rm -rf .result;
 chmod 777 tests/c;
 rm -rf tests;
 
-mkdir -p .result;
 mkdir -p dir;
 touch dir/file ;
 ln dir/file sym0;
@@ -204,7 +194,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": files with link"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf dir;
 rm -rf sym0;
 rm -rf sym1;
@@ -220,7 +209,6 @@ rm -rf sym10;
 rm -rf sym11;
 rm -rf sym12;
 
-mkdir -p .result;
 mkdir -p dir;
 touch file1;
 touch file2;
@@ -257,13 +245,11 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": files with symlink"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf dir;
 rm -rf file1;
 rm -rf file2;
 rm -rf file3;
 
-mkdir -p .result;
 ./$1 -l /dev | grep -v "ls:" | grep -v "dtrace" | grep -v "io8log" | grep -v "io8logtemp" > .result/r1 2>&1;
 ls -l /dev | grep -v "ls:" | grep -v "dtrace" | grep -v "io8log" | grep -v "io8logtemp" > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
@@ -286,9 +272,7 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": [ft_ls -l /dev]"$pos$tick$clear;
 fi
-rm -rf .result;
 
-mkdir -p .result;
 touch -t 999912312459 future;
 touch -t 01010101 first_day;
 touch -t 6901010101 past;
@@ -317,7 +301,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": special timestamps files"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf future;
 rm -rf first_day;
 rm -rf past;
@@ -325,7 +308,6 @@ rm -rf present;
 rm -rf present_too;
 rm -rf present_again;
 
-mkdir -p .result;
 touch setgid_exec; chmod 676 setgid_exec; chmod g+s setgid_exec;
 touch setgid; chmod 666 setgid; chmod g+s setgid;
 touch setuid_exec; chmod 766 setuid_exec; chmod u+s setuid_exec;
@@ -354,7 +336,6 @@ else
 	((success+=1));
 	echo $green"Test "$nb_test": setuid, setgid and sticky bit tests"$pos$tick$clear;
 fi
-rm -rf .result;
 rm -rf setgid_exec;
 rm -rf setgid;
 rm -rf setuid_exec;
@@ -371,3 +352,4 @@ else
 	((success= $nb_test - $success));
 	printf "%d test failed\n"$clear "$success";
 fi
+rm -rf .result;
