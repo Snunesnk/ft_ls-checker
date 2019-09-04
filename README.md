@@ -10,3 +10,5 @@ Ex: `./all_test.sh path/to/your/ft_ls`
 If you want to print the differences between your output and `ls` output just add the letter `p` as second argument.
 
 Ex: `./basic_test.sh path/to/your/ft_ls p`
+
+To add a new set of test, or just a new test, do `cp custom_test.sh name_of_new_test.sh` and edit your new test file following the instructions.
