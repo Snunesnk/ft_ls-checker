@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 11:17:39 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:06:11 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/04 12:23:01 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -63,7 +63,7 @@ then
 		echo "";
 	fi 
 	### Edit the two TEST DESCRIPTION below with some description.
-	### Ex: [ft_ls -1l dir1] and [ls -1l dir2] 	
+	### Ex: [ft_ls -1l dir1] 	
 	echo $red"Test "$nb_test": TEST DESCRIPTION"$pos$cross$clear;
 else
 	((success+=1));
