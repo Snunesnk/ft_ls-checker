@@ -12,4 +12,5 @@ Ex: `./basic_test.sh path/to/your/ft_ls p`
 
 #### Adding tests:
 To add a new set of test, do `cp custom_test.sh name_of_new_test.sh` and edit your new test file following the instructions.
+
 If you want to add a new test in an exiting set, just copy an existing test in the set an edit it following the instructions in `custom_test.sh`.
