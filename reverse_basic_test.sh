@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:14:30 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 11:57:40 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:33:13 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,9 +29,11 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p result;
 echo "=========================== reverse Basic tests ===========================\n";
-./$1 -1r > result/r1 2>&1;
+./ft_ls -1r > result/r1 2>&1;
 ls -1r > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))
@@ -53,7 +55,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1r]"$pos$pos$tick$clear;
 fi
 
-./$1 -1r ../ > result/r1 2>&1;
+./ft_ls -1r ../ > result/r1 2>&1;
 ls -1r ../ > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -76,7 +78,7 @@ else
 fi
 
 mkdir -p dir1 dir2 dir3;
-./$1 -1r dir1 dir2 dir3 > result/r1 2>&1;
+./ft_ls -1r dir1 dir2 dir3 > result/r1 2>&1;
 ls -1r dir1 dir2 dir3 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -86,7 +88,7 @@ then
 	cat -e result/r1;
 	echo $cyan"==========\nls:"$clear;
 	cat -e result/r2;
-	if [ -n $2 ] && [ "$1" == "p" ]
+	if [ -n $2 ] && [ "ft_ls" == "p" ]
 	then
 		echo "\nDiff:";
 		cat result/r3;
@@ -101,7 +103,7 @@ rm -rf dir1 dir2 dir3;
 
 mkdir -p dir1 dir2 dir3;
 touch  dir1/file1 dir2/file2 dir3/file3;
-./$1 -1r dir1 dir2 dir3 > result/r1 2>&1;
+./ft_ls -1r dir1 dir2 dir3 > result/r1 2>&1;
 ls -1r dir1 dir2 dir3 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));

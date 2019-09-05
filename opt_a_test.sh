@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:14:04 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:14:06 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:32:22 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,12 +29,14 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 echo "=========================== option a tests ===========================\n";
 mkdir tests;
 mkdir -p tests/.hidden;
 touch tests/.hide tests/not_hide;
-./$1 -1a tests > .result/r1 2>&1;
+./ft_ls -1a tests > .result/r1 2>&1;
 ls -1a tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -60,7 +62,7 @@ rm -rf tests;
 mkdir tests;
 mkdir -p tests/.hidden{1..10} tests/not_hidden{1..10};
 touch tests/.hide{1..10} tests/not_hide{1..10};
-./$1 -1aR tests > .result/r1 2>&1;
+./ft_ls -1aR tests > .result/r1 2>&1;
 ls -1aR tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))

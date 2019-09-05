@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:15:02 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:15:05 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:34:08 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,9 +29,11 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 echo "=========================== reverse option l tests ===========================\n";
-./$1 -1rl > .result/r1 2>&1;
+./ft_ls -1rl > .result/r1 2>&1;
 ls -1rl > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -53,7 +55,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1rl]"$pos$pos$tick$clear;
 fi
 
-./$1 -lr ../ > .result/r1 2>&1;
+./ft_ls -lr ../ > .result/r1 2>&1;
 ls -lr ../ > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -76,7 +78,7 @@ else
 fi
 
 mkdir -p dir1 dir2 dir3;
-./$1 -lr dir1 dir2 dir3 > .result/r1 2>&1;
+./ft_ls -lr dir1 dir2 dir3 > .result/r1 2>&1;
 ls -lr dir1 dir2 dir3 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -104,7 +106,7 @@ touch  dir1/file1 dir2/file2 dir3/file3;
 echo "Bonjour monde" > dir1/file1
 echo "Hello world" > dir2/file2
 echo "Hola mundo" > dir3/file3
-./$1 -lr dir1 dir2 dir3 > .result/r1 2>&1;
+./ft_ls -lr dir1 dir2 dir3 > .result/r1 2>&1;
 ls -lr dir1 dir2 dir3 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -143,7 +145,7 @@ ln dir/file sym9;
 ln dir/file sym10;
 ln dir/file sym11;
 ln dir/file sym12;
-./$1 -lra dir > .result/r1 2>&1;
+./ft_ls -lra dir > .result/r1 2>&1;
 ls -lra dir > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -194,7 +196,7 @@ ln -s dir dir/symdir;
 echo "I like trains" > dir/sym1;
 echo "2B3" > dir/sym2;
 echo "Ah yes, enslaved words" > dir/sym3;
-./$1 -lr dir > .result/r1 2>&1;
+./ft_ls -lr dir > .result/r1 2>&1;
 ls -lr dir > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -221,7 +223,7 @@ rm -rf file1;
 rm -rf file2;
 rm -rf file3;
 
-./$1 -lr /dev | grep -v "ls:" | grep -v "dtrace" | grep -v "io8log" | grep -v "io8logtemp" > .result/r1 2>&1;
+./ft_ls -lr /dev | grep -v "ls:" | grep -v "dtrace" | grep -v "io8log" | grep -v "io8logtemp" > .result/r1 2>&1;
 ls -lr /dev | grep -v "ls:" | grep -v "dtrace" | grep -v "io8log" | grep -v "io8logtemp" > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -250,7 +252,7 @@ touch -t 6901010101 past;
 touch present;
 touch present_too;
 touch present_again;
-./$1 -lr > .result/r1 2>&1;
+./ft_ls -lr > .result/r1 2>&1;
 ls -lr > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -285,7 +287,7 @@ touch setuid_exec; chmod 766 setuid_exec; chmod u+s setuid_exec;
 touch setuid; chmod 666 setuid; chmod u+s setuid;
 touch sticky_exec; chmod 667 sticky_exec; chmod +t sticky_exec;
 touch sticky; chmod 666 sticky; chmod +t sticky;
-./$1 -lr > .result/r1 2>&1;
+./ft_ls -lr > .result/r1 2>&1;
 ls -lr > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));

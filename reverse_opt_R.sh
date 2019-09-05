@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:14:41 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:14:43 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:33:35 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,10 +29,12 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 echo "=========================== reverse option R tests ===========================\n";
 mkdir -p level1/level{2..4}/level{5..9}
-./$1 -1rR level1 > .result/r1 2>&1;
+./ft_ls -1rR level1 > .result/r1 2>&1;
 ls -1rR level1 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -58,7 +60,7 @@ rm -rf level1;
 mkdir -p tests;
 mkdir -p tests/a tests/b tests/c;
 mkdir -p tests/.a tests/.b tests/.c;
-./$1 -1rR tests > .result/r1 2>&1;
+./ft_ls -1rR tests > .result/r1 2>&1;
 ls -1rR tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -83,7 +85,7 @@ rm -rf tests;
 
 mkdir -p dir1 dir2 dir3;
 chmod 000 dir1;
-./$1 -1rR 2>&1 | grep -v denied> .result/r1 2>&1;
+./ft_ls -1rR 2>&1 | grep -v denied> .result/r1 2>&1;
 ls -1rR 2>&1 | grep -v denied > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -109,7 +111,7 @@ rm -rf dir1 dir2 dir3;
 
 mkdir A;
 touch  A/file rootFile;
-./$1 -1rR A a rootfile Rootfile > .result/r1 2>&1;
+./ft_ls -1rR A a rootfile Rootfile > .result/r1 2>&1;
 ls -1rR A a rootfile Rootfile > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -137,7 +139,7 @@ mkdir -p dir;
 mkdir -p open/closed;
 chmod 000 dir;
 chmod 000 open/closed;
-./$1 -1rR 2>&1 | grep -v denied | wc -l | tr -d ' ' | tr -d '\n' > .result/r1 2>&1;
+./ft_ls -1rR 2>&1 | grep -v denied | wc -l | tr -d ' ' | tr -d '\n' > .result/r1 2>&1;
 ls -1rR 2>&1 | grep -v denied | wc -l | tr -d ' ' | tr -d '\n' > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -167,7 +169,7 @@ rm -rf open;
 mkdir -p dir/dir2;
 touch dir/file1 dir/file2 dir/file3 dir/file4;
 ln -s dir symdir;
-./$1 -1rR symdir/ > .result/r1 2>&1;
+./ft_ls -1rR symdir/ > .result/r1 2>&1;
 ls -1rR symdir/ > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -194,7 +196,7 @@ rm -rf symdir;
 
 mkdir -p .result;
 echo $cyan"==========\ntime of [ft_ls -R ~/]:"$clear;
-time ./$1 -1rR ~/ | grep -v "ls:" > .result/r1 2>&1;
+time ./ft_ls -1rR ~/ | grep -v "ls:" > .result/r1 2>&1;
 echo $cyan"==========\ntime of [ls -R ~/]:"$clear;
 time ls -1rR ~/ | grep -v "ls:" > .result/r2 2>&1;
 echo $cyan"=========="$clear;

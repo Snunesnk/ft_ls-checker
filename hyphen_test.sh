@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:13:32 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 11:56:42 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:31:25 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,10 +29,12 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 echo "=========================== hyphen tests ===========================\n";
 touch - file;
-./$1 -1 > .result/r1 2>&1;
+./ft_ls -1 > .result/r1 2>&1;
 ls -1 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -58,7 +60,7 @@ rm -rf -;
 rm -rf file;
 
 touch - file;
-./$1 -1 - > .result/r1 2>&1;
+./ft_ls -1 - > .result/r1 2>&1;
 ls -1 -  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -84,7 +86,7 @@ rm -rf -;
 rm -rf file;
 
 touch - file;
-./$1 -1 -- > .result/r1 2>&1;
+./ft_ls -1 -- > .result/r1 2>&1;
 ls -1 --  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -110,7 +112,7 @@ rm -rf -;
 rm -rf file;
 
 touch - file;
-./$1 -1 -- - > .result/r1 2>&1;
+./ft_ls -1 -- - > .result/r1 2>&1;
 ls -1 -- - > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -136,7 +138,7 @@ rm -rf -;
 rm -rf file;
 
 touch - -- ---;
-./$1 -1 -- -- > .result/r1 2>&1;
+./ft_ls -1 -- -- > .result/r1 2>&1;
 ls -1 -- --  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -163,7 +165,7 @@ rm -rf -- --;
 rm -rf -- ---;
 
 touch -- --;
-./$1 -1 -- . > .result/r1 2>&1;
+./ft_ls -1 -- . > .result/r1 2>&1;
 ls -1 -- .  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -188,7 +190,7 @@ fi
 rm -rf -- --;
 
 mkdir -- -file --file ---file;
-./$1 -1 -- -file > .result/r1 2>&1;
+./ft_ls -1 -- -file > .result/r1 2>&1;
 ls -1 -- -file > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -212,7 +214,7 @@ else
 fi
 rm -rf -- -file;
 
-./$1 -1 -- --file > .result/r1 2>&1;
+./ft_ls -1 -- --file > .result/r1 2>&1;
 ls -1 -- --file > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -236,7 +238,7 @@ else
 fi
 rm -rf -- --file;
 
-./$1 -1 -- ---file > .result/r1 2>&1;
+./ft_ls -1 -- ---file > .result/r1 2>&1;
 ls -1 -- ---file > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -261,7 +263,7 @@ fi
 rm -rf -- ---file;
 
 touch -- - -- ---
-./$1 -1 -- -- -- > .result/r1 2>&1;
+./ft_ls -1 -- -- -- > .result/r1 2>&1;
 ls -1 -- -- --  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -284,7 +286,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1 -- -- --]"$pos$tick$clear;
 fi
 
-./$1 -1 - - - > .result/r1 2>&1;
+./ft_ls -1 - - - > .result/r1 2>&1;
 ls -1 - - -  > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -307,7 +309,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1 - - -]"$pos$tick$clear;
 fi
 
-./$1 -1 -- - -- --- > .result/r1 2>&1;
+./ft_ls -1 -- - -- --- > .result/r1 2>&1;
 ls -1 -- - -- --- > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -330,7 +332,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1 -- - -- ---]"$pos$tick$clear;
 fi
 
-./$1 -1 - -- --- > .result/r1 2>&1;
+./ft_ls -1 - -- --- > .result/r1 2>&1;
 ls -1 - -- --- > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));

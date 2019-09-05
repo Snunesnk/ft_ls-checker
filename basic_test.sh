@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:04:41 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 12:31:12 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:29:56 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,9 +29,10 @@ then
 	exit 1;
 fi
 
+cp $1 ./
 mkdir -p result;
 echo "=========================== Basic tests ===========================\n";
-./$1 -1 > result/r1 2>&1;
+./ft_ls -1 > result/r1 2>&1;
 ls -1 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))
@@ -53,7 +54,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1]"$pos$pos$tick$clear;
 fi
 
-./$1 -1 ../ > result/r1 2>&1;
+./ft_ls -1 ../ > result/r1 2>&1;
 ls -1 ../ > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -76,7 +77,7 @@ else
 fi
 
 mkdir -p dir1 dir2 dir3;
-./$1 -1 dir1 dir2 dir3 > result/r1 2>&1;
+./ft_ls -1 dir1 dir2 dir3 > result/r1 2>&1;
 ls -1 dir1 dir2 dir3 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -86,7 +87,7 @@ then
 	cat -e result/r1;
 	echo $cyan"==========\nls:"$clear;
 	cat -e result/r2;
-	if [ -n $2 ] && [ "$1" == "p" ]
+	if [ -n $2 ] && [ "ft_ls" == "p" ]
 	then
 		echo "\nDiff:";
 		cat result/r3;
@@ -101,7 +102,7 @@ rm -rf dir1 dir2 dir3;
 
 mkdir -p dir1 dir2 dir3;
 touch  dir1/file1 dir2/file2 dir3/file3;
-./$1 -1 dir1 dir2 dir3 > result/r1 2>&1;
+./ft_ls -1 dir1 dir2 dir3 > result/r1 2>&1;
 ls -1 dir1 dir2 dir3 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -126,7 +127,7 @@ fi
 rm -rf dir1 dir2 dir3;
 
 mkdir -p empty_dir;
-./$1 empty_dir > result/r1 2>&1;
+./ft_ls empty_dir > result/r1 2>&1;
 ls empty_dir > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -152,7 +153,7 @@ rm -rf empty_dir;
 
 mkdir -p dir;
 touch dir/file;
-./$1 dir/file > result/r1 2>&1;
+./ft_ls dir/file > result/r1 2>&1;
 ls dir/file > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));
@@ -178,7 +179,7 @@ rm -rf dir;
 
 mkdir -p dir;
 touch dir/file1 dir/file2 dir/file3;
-./$1 -1 dir/file1 dir/file2 dir/file3 > result/r1 2>&1;
+./ft_ls -1 dir/file1 dir/file2 dir/file3 > result/r1 2>&1;
 ls -1 dir/file1 dir/file2 dir/file3 > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1));

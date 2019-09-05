@@ -6,14 +6,14 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/01 18:00:17 by snunes            #+#    #+#              #
-#    Updated: 2019/09/03 19:04:29 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:30:28 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/sh
 
 if [ -z $1 ]
 then
-	echo "ft_ls executable is missing"
+	echo "$1 executable is missing"
 	echo "Usage: ./all_test.sh path/to/ft_ls [p]"
 	exit 1
 fi

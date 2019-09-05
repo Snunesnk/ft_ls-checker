@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:15:22 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:15:24 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:34:40 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,6 +29,8 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 
 echo "=========================== symlink tests ===========================\n";
@@ -36,7 +38,7 @@ mkdir dir;
 touch dir/file1 dir/file2;
 ln -s dir symdir;
 
-./$1 -1l symdir > .result/r1 2>&1;
+./ft_ls -1l symdir > .result/r1 2>&1;
 ls -1l symdir > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -59,7 +61,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1l symdir]"$pos$pos$tick$clear;
 fi
 
-./$1 -1l symdir/ > .result/r1 2>&1;
+./ft_ls -1l symdir/ > .result/r1 2>&1;
 ls -1l symdir/ > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -82,7 +84,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1l symdir/]"$pos$tick$clear;
 fi
 
-./$1 -1 symdir 2>&1 > .result/r1 2>&1;
+./ft_ls -1 symdir 2>&1 > .result/r1 2>&1;
 ls -1 symdir 2>&1 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -105,7 +107,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -1 symdir]"$pos$tick$clear;
 fi
 
-./$1 -1 symdir/ > .result/r1 2>&1;
+./ft_ls -1 symdir/ > .result/r1 2>&1;
 ls -1 symdir/ > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));

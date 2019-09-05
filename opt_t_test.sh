@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:14:20 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:14:22 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:32:59 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,13 +29,15 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p .result;
 
 echo "=========================== option t tests ===========================\n";
 mkdir tests;
 touch tests/a tests/b tests/c tests/d tests/e;
 touch -t 201212101830.55 tests/c;
-./$1 -1t tests > .result/r1 2>&1;
+./ft_ls -1t tests > .result/r1 2>&1;
 ls -1t tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1))
@@ -63,7 +65,7 @@ touch -t 201312101830.55 tests/a;
 touch -t 201212101830.55 tests/b;
 touch -t 201412101830.55 tests/c;
 touch -t 202012101830.55 tests/d;
-./$1 -1t tests > .result/r1 2>&1;
+./ft_ls -1t tests > .result/r1 2>&1;
 ls -1t tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -95,7 +97,7 @@ touch -t 202011091830.55 tests/E;
 touch -t 202012091730.55 tests/f;
 touch -t 202012101729.55 tests/g;
 touch -t 902012101729.55 tests/h;
-./$1 -1t tests 2>&1 > .result/r1 2>&1;
+./ft_ls -1t tests 2>&1 > .result/r1 2>&1;
 ls -1t tests 2>&1 > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -125,7 +127,7 @@ ln tests/b tests/d;
 ln -s tests/c tests/e;
 ln -s tests/a tests/f;
 touch -t 4212101830.55 tests/c;
-./$1 -1t tests > .result/r1 2>&1;
+./ft_ls -1t tests > .result/r1 2>&1;
 ls -1t tests > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));
@@ -154,7 +156,7 @@ touch -t 201212101830.55 tests/lvl1;
 touch -t 201212101830.55 tests/level11/lvl11;
 touch -t 201212101830.55 tests/level11/level21/lvl21;
 touch -t 201212101830.55 tests/level11/level21/level31/lvl21;
-./$1 -1tR > .result/r1 2>&1;
+./ft_ls -1tR > .result/r1 2>&1;
 ls -1tR > .result/r2 2>&1;
 diff .result/r1 .result/r2 > .result/r3;
 	((nb_test+=1));

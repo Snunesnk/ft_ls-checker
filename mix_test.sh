@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:13:42 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 11:57:00 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:31:44 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -29,9 +29,11 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 mkdir -p result;
 echo "=========================== mix tests ===========================\n";
-./$1 -lR /usr/bin 2>&1 | grep -v "ls:" | grep -v "treereg" > result/r1 2>&1;
+./ft_ls -lR /usr/bin 2>&1 | grep -v "ls:" | grep -v "treereg" > result/r1 2>&1;
 ls -lR /usr/bin 2>&1 | grep -v "ls:" | grep -v "treereg" > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))
@@ -53,7 +55,7 @@ else
 	echo $green"Test "$nb_test": [ft_ls -lR /usr/bin]"$pos$pos$tick$clear;
 fi
 
-./$1 -lt /usr > result/r1 2>&1;
+./ft_ls -lt /usr > result/r1 2>&1;
 ls -lt /usr > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))
@@ -77,7 +79,7 @@ fi
 
 mkdir tests;
 touch tests/files{0..1000};
-./$1 -l tests > result/r1 2>&1;
+./ft_ls -l tests > result/r1 2>&1;
 ls -l tests > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))
@@ -100,7 +102,7 @@ else
 fi
 rm -rf tests;
 
-./$1 -l /var/ | grep -v "@" > result/r1 2>&1;
+./ft_ls -l /var/ | grep -v "@" > result/r1 2>&1;
 ls -l /var/ | grep -v "@" > result/r2 2>&1;
 diff result/r1 result/r2 > result/r3;
 	((nb_test+=1))

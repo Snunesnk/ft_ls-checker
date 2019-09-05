@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 11:17:39 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 12:01:52 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 13:30:59 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -30,6 +30,8 @@ then
 	exit 1;
 fi
 
+cp $1 ./;
+
 ### Creation of the directory that will contain the output of the commands
 mkdir -p result;
 ### Edit the test name below
@@ -42,7 +44,7 @@ touch dir1/file1 dir2/file2
 ln -s dir1/file1 symfile
 ### Command you want to test. Ex:
 ### Your ls:
-./$1 -1l dir1 > result/r1 2>&1; ### $1 represent your ft_ls, and the output, error and
+./ft_ls -1l dir1 > result/r1 2>&1; ### ft_ls represent your ft_ls, and the output, error and
 ### standard, is stored in a hidden file.
 ### True ls:
 ls -1l dir1 > result/r2 2>&1;
