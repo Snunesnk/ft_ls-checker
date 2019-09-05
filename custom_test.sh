@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 11:17:39 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:23:01 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 12:01:52 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -72,6 +72,7 @@ fi
 ### Now you can erase all the files you created and that are no longer needed
 rm -rf dir1
 rm -rf dir2
+rm -rf dir3
 rm -rf symfile
 
 ### To add another test, just copy paste the previous pattern and edit it

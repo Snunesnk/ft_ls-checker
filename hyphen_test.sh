@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:13:32 by snunes            #+#    #+#              #
-#    Updated: 2019/09/04 12:13:34 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/05 11:56:42 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -360,7 +360,7 @@ then
 	echo $green"Congratulation ! You passed all the tests."$clear;
 else
 	printf $cyan"%d test succeed, " "$success";
-	((success= $nb_test - $success));
+	((success= $nb_test-$success));
 	printf "%d test failed\n"$clear "$success";
 fi
 rm -rf .result;
