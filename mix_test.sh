@@ -6,7 +6,7 @@
 #    By: snunes <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 12:13:42 by snunes            #+#    #+#              #
-#    Updated: 2019/09/05 13:31:44 by snunes           ###   ########.fr        #
+#    Updated: 2019/09/09 15:34:09 by snunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -124,6 +124,32 @@ else
 	echo $green"Test "$nb_test": [ft_ls -l /var/run/]"$pos$pos$tick$clear;
 fi
 rm -rf tests/file*;
+rm -rf tests;
+
+mkdir -p level1/level2/level3/level4;
+touch level1/level2/file{1..5};
+./ft_ls -1 level1/../level1/level2/././level3/level4/./../../ > result/r1 2>&1;
+ls -1 level1/../level1/level2/././level3/level4/./../../ > result/r2 2>&1;
+diff result/r1 result/r2 > result/r3;
+	((nb_test+=1))
+if [ -s result/r3 ]
+then
+	echo $cyan"\n==========\nft_ls:"$clear;
+	cat -e result/r1;
+	echo $cyan"==========\nls:"$clear;
+	cat -e result/r2;
+	if [ -n $2 ] && [ "$2" == "p" ]
+	then
+		echo "\nDiff:";
+		cat result/r3;
+		echo "";
+	fi
+	echo $red"Test "$nb_test": Path with ./ and ../ "$pos$cross$clear;
+else
+	((success+=1));
+	echo $green"Test "$nb_test": Path with ./ and ../ "$pos$pos$tick$clear;
+fi
+rm -rf level1;
 rm -rf tests;
 
 printf $Byellow"\nEnd of mix tests\n"$clear;
